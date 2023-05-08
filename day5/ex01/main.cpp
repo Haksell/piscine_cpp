@@ -23,21 +23,9 @@ int main() {
     std::cout << std::endl;
 
     zaphod.signForm(nuclearStrike);
-    try {
-        user.signForm(nuclearStrike);
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
-    try {
-        spartacus.signForm(nuclearStrike);
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
-    try {
-        spartacus.signForm(takeTheGarbageOut);
-    } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-    }
+    user.signForm(nuclearStrike);
+    spartacus.signForm(nuclearStrike);
+    spartacus.signForm(takeTheGarbageOut);
 
     std::cout << std::endl;
 

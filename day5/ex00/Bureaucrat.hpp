@@ -8,8 +8,8 @@
 class Bureaucrat {
   private:
     static const std::string defaultName;
-    static const int highestGrade;
-    static const int lowestGrade;
+    static const int highestGrade = 1;
+    static const int lowestGrade = 150;
 
     const std::string name;
     int grade;

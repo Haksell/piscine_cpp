@@ -1,8 +1,6 @@
 #include "Bureaucrat.hpp"
 
 const std::string Bureaucrat::defaultName = "Jean-Luc Melenchon";
-const int Bureaucrat::highestGrade = 1;
-const int Bureaucrat::lowestGrade = 150;
 
 void Bureaucrat::assignGrade(int grade) {
     if (grade < Bureaucrat::highestGrade)
