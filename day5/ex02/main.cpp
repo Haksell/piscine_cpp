@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <cstdlib>
 
 static std::string getUser() {
@@ -11,11 +11,11 @@ int main() {
     Bureaucrat zaphod("Zaphod", 1);
     Bureaucrat user(getUser(), 42);
     Bureaucrat spartacus("Spartacus", 150);
-    Form nuclearStrike("NuclearStrike", 1, 1);
-    Form takeTheGarbageOut("TakeTheGarbageOut", 140, 140);
+    AForm nuclearStrike("NuclearStrike", 1, 1);
+    AForm takeTheGarbageOut("TakeTheGarbageOut", 140, 140);
 
     try {
-        Form impossible("Impossible", 0, 30);
+        AForm impossible("Impossible", 0, 30);
     } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
