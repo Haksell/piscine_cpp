@@ -16,7 +16,7 @@ static void section(std::string title, std::vector<std::string> strings) {
     }
 }
 
-static void tests() {
+static void test() {
     std::string s[] = {"inf",   "-inf",  "+inf", "nan", "inff",
                        "-inff", "+inff", "nanf", "nope"};
     section("SPECIAL VALUES",
@@ -30,11 +30,25 @@ static void tests() {
                        "42",          "2147483647",  "2147483648"};
     section("INTEGERS",
             std::vector<std::string>(i, i + sizeof(i) / sizeof(std::string)));
+
+    std::string f[] = {
+        "-340282346638528859811704183484516925440.0f", "-42.0f", "1.1f",
+        "0.000000000001f",
+        "99999999999999999999999999999999999999999999999999999999999999.0f"};
+    section("FLOATS",
+            std::vector<std::string>(f, f + sizeof(f) / sizeof(std::string)));
+
+    std::string d[] = {
+        "-340282346638528859811704183484516925440.0", "-42.0", "1.1",
+        "0.000000000001",
+        "99999999999999999999999999999999999999999999999999999999999999.0"};
+    section("DOUBLES",
+            std::vector<std::string>(d, d + sizeof(d) / sizeof(std::string)));
 }
 
 int main(int argc, char **argv) {
     if (argc == 1) {
-        tests();
+        test();
         return EXIT_SUCCESS;
     } else if (argc == 2) {
         ScalarConverter::convert(argv[1]);

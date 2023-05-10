@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include <limits>
 
 ScalarConverter::~ScalarConverter() {}
 
@@ -88,11 +89,27 @@ static bool convertNum(const std::string &input, t_num *num) {
     return std::isfinite(num->d);
 }
 
+static std::string formatDouble(double d) {
+    // Print value to a string
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(999) << d;
+    std::string str = ss.str();
+    // Ensure that there is a decimal point somewhere (there should be)
+    if (str.find('.') != std::string::npos) {
+        // Remove trailing zeroes
+        str = str.substr(0, str.find_last_not_of('0') + 1);
+        // If the decimal point is now the last character, remove that as well
+        if (str.find('.') == str.size() - 1) {
+            str += '0';
+        }
+    }
+    return str;
+}
+
 void ScalarConverter::convert(const std::string &input) {
     std::string special;
     t_num num;
 
-    std::cout << std::setprecision(9999);
     if (convertSpecial(input, &special)) {
         std::cout << "char: " << NO;
         std::cout << "int: " << NO;
@@ -113,12 +130,10 @@ void ScalarConverter::convert(const std::string &input) {
         else
             std::cout << "int: " << NO;
         if (num.isValidFloat)
-            std::cout << "float: " << num.f
-                      << (fmod(num.f, 1) == 0 ? ".0f" : "f") << std::endl;
+            std::cout << "float: " << formatDouble(num.f) << 'f' << std::endl;
         else
             std::cout << "float: " << NO;
-        std::cout << "double: " << num.d << (fmod(num.d, 1) == 0 ? ".0" : "")
-                  << std::endl;
+        std::cout << "double: " << formatDouble(num.d) << std::endl;
     } else {
         std::cout << "Invalid conversion" << std::endl;
     }
