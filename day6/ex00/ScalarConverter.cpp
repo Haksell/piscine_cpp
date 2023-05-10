@@ -58,12 +58,10 @@ static bool convertNum(const std::string &input, t_num *num) {
             if (dotFound) {
                 num->d += decimal * digit;
                 decimal *= 0.1;
-            } else {
+            } else
                 num->d = 10 * num->d + digit;
-            }
-        } else {
+        } else
             return false;
-        }
     }
     num->d *= sign;
     if (!std::isfinite(num->d))
@@ -90,18 +88,13 @@ static bool convertNum(const std::string &input, t_num *num) {
 }
 
 static std::string formatDouble(double d) {
-    // Print value to a string
     std::stringstream ss;
     ss << std::fixed << std::setprecision(999) << d;
     std::string str = ss.str();
-    // Ensure that there is a decimal point somewhere (there should be)
     if (str.find('.') != std::string::npos) {
-        // Remove trailing zeroes
         str = str.substr(0, str.find_last_not_of('0') + 1);
-        // If the decimal point is now the last character, remove that as well
-        if (str.find('.') == str.size() - 1) {
+        if (str.find('.') == str.size() - 1)
             str += '0';
-        }
     }
     return str;
 }
