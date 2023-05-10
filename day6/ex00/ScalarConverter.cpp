@@ -2,6 +2,8 @@
 
 ScalarConverter::~ScalarConverter() {}
 
+static bool isPrintable(char c) { return 32 <= c && c <= 126; }
+
 static bool convertSpecial(const std::string &input, std::string *special) {
     const bool isSpecialDouble =
         input == "inf" || input == "-inf" || input == "+inf" || input == "nan";
@@ -18,7 +20,8 @@ static bool convertSpecial(const std::string &input, std::string *special) {
 }
 
 static bool convertChar(const std::string &input, t_num *num) {
-    if (input.size() == 3 && input[0] == '\'' && input[2] == '\'') {
+    if (input.size() == 3 && input[0] == '\'' && isPrintable(input[1]) &&
+        input[2] == '\'') {
         num->c = input[1];
         num->n = num->c;
         return true;
@@ -68,7 +71,7 @@ static bool convertNum(const std::string &input, t_num *num) {
         num->d <= std::numeric_limits<int>::max() && fmod(num->d, 1) == 0) {
         num->isValidInt = true;
         num->n = num->d;
-        if (32 <= num->n && num->n <= 126) {
+        if (isPrintable(num->n)) {
             num->isValidChar = true;
             num->c = num->n;
         } else
@@ -76,7 +79,7 @@ static bool convertNum(const std::string &input, t_num *num) {
     } else {
         num->isValidChar = num->isValidInt = false;
     }
-    if (std::numeric_limits<float>::min() <= num->d &&
+    if (-std::numeric_limits<float>::max() <= num->d &&
         num->d <= std::numeric_limits<float>::max()) {
         num->f = num->d;
         num->isValidFloat = true;

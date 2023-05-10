@@ -17,16 +17,17 @@ static void section(std::string title, std::vector<std::string> strings) {
 }
 
 static void tests() {
-    std::string s[] = {"inf",  "-inf",  "+inf",  "nan",
-                       "inff", "-inff", "+inff", "nanf"};
+    std::string s[] = {"inf",   "-inf",  "+inf", "nan", "inff",
+                       "-inff", "+inff", "nanf", "nope"};
     section("SPECIAL VALUES",
             std::vector<std::string>(s, s + sizeof(s) / sizeof(std::string)));
 
-    std::string c[] = {"' '", "'*'", "'0'", "'A'", "'z'", "'~'"};
+    std::string c[] = {"' '", "'*'", "'0'", "'A'", "'z'", "'~'", "'è'"};
     section("CHARACTERS",
             std::vector<std::string>(c, c + sizeof(c) / sizeof(std::string)));
 
-    std::string i[] = {"-2147483648", "-1", "0", "1", "42", "2147483647"};
+    std::string i[] = {"-2147483649", "-2147483648", "-1",        "0", "1",
+                       "42",          "2147483647",  "2147483648"};
     section("INTEGERS",
             std::vector<std::string>(i, i + sizeof(i) / sizeof(std::string)));
 }
