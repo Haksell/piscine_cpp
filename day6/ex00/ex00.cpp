@@ -27,7 +27,7 @@ static void test() {
             std::vector<std::string>(c, c + sizeof(c) / sizeof(std::string)));
 
     std::string i[] = {"-2147483649", "-2147483648", "-1",        "0", "1",
-                       "42",          "2147483647",  "2147483648"};
+                       "42",          "+2147483647", "2147483648"};
     section("INTEGERS",
             std::vector<std::string>(i, i + sizeof(i) / sizeof(std::string)));
 
@@ -40,7 +40,7 @@ static void test() {
 
     std::string d[] = {
         "-340282346638528859811704183484516925440.0", "-42.0", "1.1",
-        "0.000000000001",
+        "+0.000000000001",
         "99999999999999999999999999999999999999999999999999999999999999.0"};
     section("DOUBLES",
             std::vector<std::string>(d, d + sizeof(d) / sizeof(std::string)));

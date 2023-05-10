@@ -48,6 +48,9 @@ static bool convertNum(const std::string &input, t_num *num) {
                 sign = -1;
             else
                 return false;
+        } else if (c == '+') {
+            if (i != 0)
+                return false;
         } else if (c == 'f') {
             if (i == input.size() - 1)
                 num->d = float(num->d);
