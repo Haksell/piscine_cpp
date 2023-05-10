@@ -1,14 +1,17 @@
 #pragma once
 
-#include <climits>
 #include <cmath>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <string>
+#include <vector>
 
 #define NO "❌❌❌\n"
+#define RESET "\033[0m"
+#define BOLDBLUE "\033[1m\033[34m"
+#define GREEN "\033[32m"
 
 typedef struct s_num {
     char c;

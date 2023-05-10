@@ -4,9 +4,9 @@ ScalarConverter::~ScalarConverter() {}
 
 static bool convertSpecial(const std::string &input, std::string *special) {
     const bool isSpecialDouble =
-        input == "inf" || input == "-inf" || input == "nan";
-    const bool isSpecialFloat =
-        input == "inff" || input == "-inff" || input == "nanf";
+        input == "inf" || input == "-inf" || input == "+inf" || input == "nan";
+    const bool isSpecialFloat = input == "inff" || input == "-inff" ||
+                                input == "+inff" || input == "nanf";
     if (isSpecialDouble || isSpecialFloat) {
         *special = input;
         if (isSpecialFloat) {
@@ -32,7 +32,7 @@ static bool convertNum(const std::string &input, t_num *num) {
     int sign = 1;
     bool dotFound = false;
     double decimal = 0.1;
-    num->c = num->n = num->f = num->d = 0;
+    num->d = 0;
     for (size_t i = 0; i < input.size(); ++i) {
         char c = input[i];
         if (c == '.') {
@@ -64,12 +64,24 @@ static bool convertNum(const std::string &input, t_num *num) {
     num->d *= sign;
     if (!std::isfinite(num->d))
         return false;
-    if (num->d > INT_MAX || num->d < INT_MIN || fmod(num->d, 1) != 0) {
-
+    if (std::numeric_limits<int>::min() <= num->d &&
+        num->d <= std::numeric_limits<int>::max() && fmod(num->d, 1) == 0) {
+        num->isValidInt = true;
+        num->n = num->d;
+        if (32 <= num->n && num->n <= 126) {
+            num->isValidChar = true;
+            num->c = num->n;
+        } else
+            num->isValidChar = false;
     } else {
         num->isValidChar = num->isValidInt = false;
     }
-
+    if (std::numeric_limits<float>::min() <= num->d &&
+        num->d <= std::numeric_limits<float>::max()) {
+        num->f = num->d;
+        num->isValidFloat = true;
+    } else
+        num->isValidFloat = false;
     return std::isfinite(num->d);
 }
 
@@ -77,12 +89,7 @@ void ScalarConverter::convert(const std::string &input) {
     std::string special;
     t_num num;
 
-    float f = 42.123456789123456789f;
-    double d = 4.9406564584124654E-324;
-    std::cout << std::setprecision(999999);
-    std::cout << f << std::endl;
-    std::cout << d << std::endl;
-
+    std::cout << std::setprecision(9999);
     if (convertSpecial(input, &special)) {
         std::cout << "char: " << NO;
         std::cout << "int: " << NO;
@@ -103,10 +110,12 @@ void ScalarConverter::convert(const std::string &input) {
         else
             std::cout << "int: " << NO;
         if (num.isValidFloat)
-            std::cout << "float: " << num.f << std::endl;
+            std::cout << "float: " << num.f
+                      << (fmod(num.f, 1) == 0 ? ".0f" : "f") << std::endl;
         else
             std::cout << "float: " << NO;
-        std::cout << "double: " << num.d << std::endl;
+        std::cout << "double: " << num.d << (fmod(num.d, 1) == 0 ? ".0" : "")
+                  << std::endl;
     } else {
         std::cout << "Invalid conversion" << std::endl;
     }
