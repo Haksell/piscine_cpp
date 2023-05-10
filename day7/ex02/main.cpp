@@ -1,6 +1,4 @@
 #include "Array.hpp"
-#include <iostream>
-#define INT_SIZE 10
 
 template <class T>
 static std::ostream &operator<<(std::ostream &os, const Array<T> &arr) {

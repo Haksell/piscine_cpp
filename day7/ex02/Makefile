@@ -2,7 +2,7 @@ NAME := ex02
 PATH_OBJS := objs
 CXX := c++ -Wall -Wextra -Werror -std=c++98
 SRCS := main.cpp
-HEADERS := Array.hpp
+HEADERS := Array.hpp Array.tpp
 OBJS := ${patsubst %.cpp, ${PATH_OBJS}/%.o, ${SRCS}}
 
 all: ${NAME}
