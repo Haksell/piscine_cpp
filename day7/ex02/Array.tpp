@@ -3,7 +3,8 @@
 #include <cstdlib>
 #include <stdexcept>
 
-template <typename T> class Array {
+template <typename T>
+class Array {
 public:
 	Array() : _elems(NULL), _size(0) {}
 
