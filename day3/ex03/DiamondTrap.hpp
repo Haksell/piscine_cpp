@@ -8,21 +8,21 @@
 #include <string>
 
 class DiamondTrap : public FragTrap, public ScavTrap {
-  private:
-    std::string name;
+private:
+	std::string name;
 
-  public:
-    DiamondTrap();
-    DiamondTrap(std::string name);
-    DiamondTrap(const DiamondTrap &diamondTrap);
-    ~DiamondTrap();
-    DiamondTrap &operator=(const DiamondTrap &diamondTrap);
+public:
+	DiamondTrap();
+	DiamondTrap(std::string name);
+	DiamondTrap(const DiamondTrap& diamondTrap);
+	~DiamondTrap();
+	DiamondTrap& operator=(const DiamondTrap& diamondTrap);
 
-    std::string getName() const;
+	std::string getName() const;
 
-    void whoAmI();
+	void whoAmI();
 };
 
-std::ostream &operator<<(std::ostream &os, const DiamondTrap &diamondTrap);
+std::ostream& operator<<(std::ostream& os, const DiamondTrap& diamondTrap);
 
 #endif

@@ -5,19 +5,19 @@
 #include <string>
 
 struct Data {
-    int num;
-    std::string fact;
+	int num;
+	std::string fact;
 };
 
 class Serializer {
-  public:
-    ~Serializer();
+public:
+	~Serializer();
 
-    static uintptr_t serialize(Data *ptr);
-    static Data *deserialize(uintptr_t raw);
+	static uintptr_t serialize(Data* ptr);
+	static Data* deserialize(uintptr_t raw);
 
-  private:
-    Serializer();
-    Serializer(Serializer const &serializer);
-    Serializer &operator=(Serializer const &serializer);
+private:
+	Serializer();
+	Serializer(Serializer const& serializer);
+	Serializer& operator=(Serializer const& serializer);
 };

@@ -5,31 +5,31 @@
 #include <string>
 
 class ClapTrap {
-  protected:
-    std::string name;
-    unsigned int hitPoints;
-    unsigned int energyPoints;
-    unsigned int attackDamage;
+protected:
+	std::string name;
+	unsigned int hitPoints;
+	unsigned int energyPoints;
+	unsigned int attackDamage;
 
-    bool canMove();
+	bool canMove();
 
-  public:
-    ClapTrap();
-    ClapTrap(std::string name);
-    ClapTrap(const ClapTrap &clapTrap);
-    ~ClapTrap();
-    ClapTrap &operator=(const ClapTrap &clapTrap);
+public:
+	ClapTrap();
+	ClapTrap(std::string name);
+	ClapTrap(const ClapTrap& clapTrap);
+	~ClapTrap();
+	ClapTrap& operator=(const ClapTrap& clapTrap);
 
-    std::string getName() const;
-    unsigned int getHitPoints() const;
-    unsigned int getEnergyPoints() const;
-    unsigned int getAttackDamage() const;
+	std::string getName() const;
+	unsigned int getHitPoints() const;
+	unsigned int getEnergyPoints() const;
+	unsigned int getAttackDamage() const;
 
-    void attack(const std::string &target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
+	void attack(const std::string& target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 };
 
-std::ostream &operator<<(std::ostream &os, const ClapTrap &clapTrap);
+std::ostream& operator<<(std::ostream& os, const ClapTrap& clapTrap);
 
 #endif

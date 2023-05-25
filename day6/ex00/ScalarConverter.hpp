@@ -15,22 +15,22 @@
 #define GREEN "\033[32m"
 
 typedef struct s_num {
-    char c;
-    bool isValidChar;
-    int n;
-    bool isValidInt;
-    float f;
-    bool isValidFloat;
-    double d;
+	char c;
+	bool isValidChar;
+	int n;
+	bool isValidInt;
+	float f;
+	bool isValidFloat;
+	double d;
 } t_num;
 
 class ScalarConverter {
-  private:
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter &scalarConverter);
-    ScalarConverter &operator=(const ScalarConverter &scalarConverter);
+private:
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter& scalarConverter);
+	ScalarConverter& operator=(const ScalarConverter& scalarConverter);
 
-  public:
-    static void convert(const std::string &input);
-    ~ScalarConverter();
+public:
+	static void convert(const std::string& input);
+	~ScalarConverter();
 };

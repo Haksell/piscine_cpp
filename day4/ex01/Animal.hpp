@@ -7,17 +7,17 @@
 #include <string>
 
 class Animal {
-  public:
-    Animal();
-    Animal(Animal const &animal);
-    Animal &operator=(Animal const &animal);
-    virtual ~Animal();
+public:
+	Animal();
+	Animal(Animal const& animal);
+	Animal& operator=(Animal const& animal);
+	virtual ~Animal();
 
-    virtual void makeSound() const;
-    std::string getType() const;
+	virtual void makeSound() const;
+	std::string getType() const;
 
-  protected:
-    std::string type;
+protected:
+	std::string type;
 };
 
 #endif

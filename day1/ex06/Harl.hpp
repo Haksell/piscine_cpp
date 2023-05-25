@@ -15,18 +15,18 @@
 #define UNKNOWN "Unknown log level."
 
 class Harl {
-  private:
-    void debug();
-    void info();
-    void warning();
-    void error();
+private:
+	void debug();
+	void info();
+	void warning();
+	void error();
 
-  public:
-    typedef void (Harl::*log_func_t)(void);
-    typedef std::map<std::string, log_func_t> log_map_t;
-    log_map_t logFunctions;
-    Harl();
-    void complain(std::string level);
+public:
+	typedef void (Harl::*log_func_t)(void);
+	typedef std::map<std::string, log_func_t> log_map_t;
+	log_map_t logFunctions;
+	Harl();
+	void complain(std::string level);
 };
 
 #endif

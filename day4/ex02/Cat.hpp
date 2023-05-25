@@ -4,18 +4,18 @@
 #include "AAnimal.hpp"
 
 class Cat : public AAnimal {
-  public:
-    Cat();
-    Cat(Cat const &cat);
-    Cat &operator=(Cat const &cat);
-    ~Cat();
+public:
+	Cat();
+	Cat(Cat const& cat);
+	Cat& operator=(Cat const& cat);
+	~Cat();
 
-    void makeSound() const;
-    std::string getIdea(int idx) const;
-    void setIdea(int idx, std::string idea);
+	void makeSound() const;
+	std::string getIdea(int idx) const;
+	void setIdea(int idx, std::string idea);
 
-  private:
-    Brain *brain;
+private:
+	Brain* brain;
 };
 
 #endif
