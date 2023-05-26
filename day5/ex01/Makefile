@@ -1,12 +1,14 @@
-NAME := ex02
+NAME := ex01
 PATH_OBJS := objs
 CXX := c++ -Wall -Wextra -Werror -std=c++98
-SRCS := ex02.cpp
+CLASSES := Bureaucrat Form
+SRCS := main.cpp ${addsuffix .cpp, ${CLASSES}}
+HEADERS := ${addsuffix .hpp, ${CLASSES}}
 OBJS := ${patsubst %.cpp, ${PATH_OBJS}/%.o, ${SRCS}}
 
 all: ${NAME}
 
-${OBJS}: ${PATH_OBJS}/%.o: %.cpp
+${OBJS}: ${PATH_OBJS}/%.o: %.cpp ${HEADERS}
 	@mkdir -p ${PATH_OBJS}
 	${CXX} -c $< -o $@
 
@@ -19,6 +21,7 @@ clean:
 fclean: clean
 	rm -f ${NAME}
 
-re: fclean ${NAME}
+re: fclean
+	${MAKE} ${NAME}
 
 .PHONY: all clean fclean re

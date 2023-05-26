@@ -1,9 +1,10 @@
-NAME := ex01
+NAME := ex02
 PATH_OBJS := objs
+GARBAGE := *_shrubbery
 CXX := c++ -Wall -Wextra -Werror -std=c++98
-CLASSES := Serializer
-SRCS := ex01.cpp ${addsuffix .cpp, ${CLASSES}}
-HEADERS := ${addsuffix .hpp, ${CLASSES}}
+CLASSES := AForm Bureaucrat PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm
+SRCS := main.cpp ${addsuffix .cpp, ${CLASSES}}
+HEADERS := ex02.hpp ${addsuffix .hpp, ${CLASSES}}
 OBJS := ${patsubst %.cpp, ${PATH_OBJS}/%.o, ${SRCS}}
 
 all: ${NAME}
@@ -16,11 +17,12 @@ ${NAME}: ${OBJS}
 	${CXX} ${OBJS} -o $@
 
 clean:
-	rm -rf ${PATH_OBJS}
+	rm -rf ${PATH_OBJS} ${GARBAGE}
 
 fclean: clean
 	rm -f ${NAME}
 
-re: fclean ${NAME}
+re: fclean
+	${MAKE} ${NAME}
 
 .PHONY: all clean fclean re

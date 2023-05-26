@@ -1,8 +1,8 @@
 NAME := ex00
 PATH_OBJS := objs
 CXX := c++ -Wall -Wextra -Werror -std=c++98
-CLASSES := ScalarConverter
-SRCS := ex00.cpp ${addsuffix .cpp, ${CLASSES}}
+CLASSES := Bureaucrat
+SRCS := main.cpp ${addsuffix .cpp, ${CLASSES}}
 HEADERS := ${addsuffix .hpp, ${CLASSES}}
 OBJS := ${patsubst %.cpp, ${PATH_OBJS}/%.o, ${SRCS}}
 
@@ -21,6 +21,7 @@ clean:
 fclean: clean
 	rm -f ${NAME}
 
-re: fclean ${NAME}
+re: fclean
+	${MAKE} ${NAME}
 
 .PHONY: all clean fclean re
