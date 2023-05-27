@@ -31,6 +31,7 @@ static bool convertChar(const std::string& input, t_num* num) {
 }
 
 static bool convertNum(const std::string& input, t_num* num) {
+	// TODO ignore more stuff like "+" "+." "f" and more
 	if (input == "." || input == ".f" || input == "-." || input == "-.f")
 		return false;
 	int sign = 1;
