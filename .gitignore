@@ -1,6 +1,7 @@
 tests/__pycache__
 .pytest_cache
 .vscode
+
 day*/ex*/objs
 day0/ex00/megaphone
 day0/ex01/phonebook
@@ -41,3 +42,6 @@ day7/ex02/ex02
 day8/ex00/ex00
 day8/ex01/ex01
 day8/ex02/ex02
+dat9/ex00/btc
+dat9/ex01/RPN
+dat9/ex02/PmergeMe
